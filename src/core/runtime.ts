@@ -1,4 +1,4 @@
-import { addAssitantMessage, addUserMessage, Session } from "./session.js";
+import { addAssistantMessage, addUserMessage, Session } from "./session.js";
 import { getCommand } from "../commands/registry.js";
 import { CommandResults } from "../commands/types.js";
 import { parseCommands } from "../commands/parser.js";
@@ -24,7 +24,7 @@ export function handleInput(session: Session, input: string): CommandResults {
   }
   addUserMessage(session, trimedInput);
   const reply = `You said ${trimedInput}`;
-  addAssitantMessage(session, reply);
+  addAssistantMessage(session, reply);
   return {
     message: reply,
   };
