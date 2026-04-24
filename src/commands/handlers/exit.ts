@@ -1,12 +1,10 @@
 import { Command } from "../types.js";
 
 export const exitCommand: Command = {
-  name: "Exit",
+  name: "exit",
   description: "Exit the CLI...",
-  execute: () => {
-    return {
-      message: "Exiting the cli..",
-      shouldExit: true,
-    };
-  },
+  execute: () => ({
+    message: "Exiting the cli...",
+    shouldExit: true,
+  }),
 };

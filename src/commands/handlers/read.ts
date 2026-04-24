@@ -12,14 +12,14 @@ export const readCommand: Command = {
       };
     }
 
-    const filePath = resolve(context.session.workspacePath, args.join("\n"));
+    const filePath = resolve(context.session.workspacePath, args.join(" "));
     if (!existsSync(filePath)) {
       return {
         message: "File not found",
       };
     }
 
-    if (!statSync(filePath).isDirectory()) {
+    if (statSync(filePath).isDirectory()) {
       return {
         message: `File is not a directory or file.`,
       };

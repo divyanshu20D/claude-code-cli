@@ -1,5 +1,5 @@
-import { ProviderName, setModel, setProvider } from "../core/session.js";
-import { Command } from "../commands/types.js";
+import { ProviderName, setModel, setProvider } from "../../core/session.js";
+import { Command } from "../types.js";
 
 const supportedProviders: ProviderName[] = ["openai", "gemini"];
 
@@ -20,20 +20,23 @@ export const providerCommand: Command = {
         message: `Unsupported provider: ${args[0]}. Available: ${supportedProviders.join(", ")}`,
       };
     }
+    const previousProvider = context.session.provider;
     setProvider(context.session, nextProvider);
 
-    if (
-      nextProvider == "openai" &&
-      context.session.model.startsWith("gemini")
-    ) {
-      setModel(context.session, "gpt-5");
-    }
+    if (previousProvider !== nextProvider) {
+      if (
+        nextProvider == "openai" &&
+        context.session.model.startsWith("gemini")
+      ) {
+        setModel(context.session, "gpt-5");
+      }
 
-    if (
-      nextProvider == "gemini" &&
-      context.session.model.startsWith("openai")
-    ) {
-      setModel(context.session, "gemini-3.1-flash-preview");
+      if (
+        nextProvider == "gemini" &&
+        context.session.model.startsWith("openai")
+      ) {
+        setModel(context.session, "gemini-3.1-flash-preview");
+      }
     }
     return {
       message: `Provider switched to ${context.session.provider}`,
