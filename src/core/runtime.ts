@@ -1,4 +1,5 @@
-import { addAssistantMessage, addUserMessage, Session } from "./session.js";
+import { Session } from "./session.js";
+import { handleChatMessage } from "./chat.js";
 import { getCommand } from "../commands/registry.js";
 import { CommandResults } from "../commands/types.js";
 import { parseCommands } from "../commands/parser.js";
@@ -22,10 +23,5 @@ export function handleInput(session: Session, input: string): CommandResults {
     // return command.execute({ session }, parseCommands.args );
     return command.execute({ session }, parsedCommand.args);
   }
-  addUserMessage(session, trimedInput);
-  const reply = `You said ${trimedInput}`;
-  addAssistantMessage(session, reply);
-  return {
-    message: reply,
-  };
+  return handleChatMessage(session, trimedInput);
 }

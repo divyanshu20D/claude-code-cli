@@ -28,6 +28,6 @@ function promptUser() {
   });
 }
 
-promptUser();
 console.log("mycli started");
 console.log(`workspace: ${workspacePath}`);
+promptUser();

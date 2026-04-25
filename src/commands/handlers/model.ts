@@ -1,10 +1,6 @@
+import { providerModels } from "../../core/provider-options.js";
 import { setModel } from "../../core/session.js";
 import { Command } from "../types.js";
-
-const providerModels = {
-  openai: ["gpt-5", "gpt-5-mini"],
-  gemini: ["gemini-2.5-pro", "gemini-3.1-flash-preview"],
-} as const;
 
 export const modelCommand: Command = {
   name: "model",
@@ -18,7 +14,7 @@ export const modelCommand: Command = {
     const availableModels = providerModels[context.session.provider];
     const nextModel = args.join(" ");
 
-    if (!availableModels.includes(nextModel as never)) {
+    if (!availableModels.includes(nextModel)) {
       return {
         message: `Unsupported Model for ${context.session.provider}, Available Models ${availableModels.join(" ")}`,
       };

@@ -1,10 +1,5 @@
-import { ProviderName } from "../../core/session.js";
+import { providerModels } from "../../core/provider-options.js";
 import { Command } from "../types.js";
-
-const providerModels: Record<ProviderName, string[]> = {
-  openai: ["gpt-5", "gpt-5-mini"],
-  gemini: ["gemini-3-flash-preview", "gemini-3.1-pro"],
-};
 
 export const modelsCommand: Command = {
   name: "models",
@@ -12,7 +7,7 @@ export const modelsCommand: Command = {
   execute(context) {
     const models = providerModels[context.session.provider];
     return {
-      message: [`Avalable Models`, ...models].join("\n"),
+      message: [`Available models:`, ...models].join("\n"),
     };
   },
 };

@@ -12,6 +12,7 @@ import { providerCommand } from "./handlers/provider.js";
 import { providersCommand } from "./handlers/providers.js";
 import { readCommand } from "./handlers/read.js";
 import { resetCommand } from "./handlers/reset.js";
+import { searchCommand } from "./handlers/search.js";
 import { statusCommand } from "./handlers/status.js";
 import { whoamiCommand } from "./handlers/whoami.js";
 import { Command } from "./types.js";
@@ -33,6 +34,7 @@ const commands: Command[] = [
   loginCommand,
   whoamiCommand,
   exitCommand,
+  searchCommand,
 ];
 
 export function getCommand(name: string): Command | undefined {
