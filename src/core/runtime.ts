@@ -20,7 +20,6 @@ export function handleInput(session: Session, input: string): CommandResults {
       };
     }
 
-    // return command.execute({ session }, parseCommands.args );
     return command.execute({ session }, parsedCommand.args);
   }
   return handleChatMessage(session, trimedInput);
